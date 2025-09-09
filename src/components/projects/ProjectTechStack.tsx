@@ -3,7 +3,11 @@ import { Icon } from "@iconify-icon/react";
 import { Badge } from "../ui/badge";
 import type { Technologies } from "@/utils/types";
 
-export default function ProjectTechStack(list: Technologies[]) {
+type Props = {
+  list: Technologies[];
+};
+
+export default function ProjectTechStack({ list }: Props) {
   return (
     <div className="flex flex-wrap gap-1">
       {list.map((item, index) => (

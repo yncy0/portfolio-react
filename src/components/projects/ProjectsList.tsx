@@ -2,7 +2,7 @@ import ProjectsCard from "./ProjectsCard";
 import { portfolioTechStack, monthsaryTechStack } from "@/utils/lists";
 import type { Projects } from "@/utils/types";
 
-export default function ToggleTheme() {
+export default function ProjectsList() {
   const projects: Projects[] = [
     {
       title: "Portfolio",
