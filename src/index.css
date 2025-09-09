@@ -6,7 +6,6 @@
 
 @import "@catppuccin/tailwindcss/mocha.css";
 
-@import "./main.css"
 
 @custom-variant dark (&:is(.dark *));
 
@@ -80,6 +79,7 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);

@@ -26,7 +26,7 @@ export default function SocialsList() {
       {items.map((item, index) => (
         <li key={index}>
           <a href={item.link} aria-label={item.aria}>
-            <Icon icon="item.icon" className="size-6" />
+            <Icon icon={item.icon} className="size-6" />
           </a>
         </li>
       ))}

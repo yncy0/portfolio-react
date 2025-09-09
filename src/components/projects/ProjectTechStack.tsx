@@ -12,7 +12,7 @@ export default function ProjectTechStack({ list }: Props) {
     <div className="flex flex-wrap gap-1">
       {list.map((item, index) => (
         <div key={index}>
-          <Badge className="bg-cat-text text-cat-base rounded-md">
+          <Badge className="bg-cat-base text-cat-text rounded-md">
             <Icon icon={item.icon} className={item.color} />
             {item.name}
           </Badge>

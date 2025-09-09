@@ -34,8 +34,8 @@ export default function ProjectsList() {
             <ProjectsCard
               title={item.title}
               description={item.description}
-              github-url={item.githubUrl}
-              image-url={item.imageUrl}
+              githubUrl={item.githubUrl}
+              imageUrl={item.imageUrl}
               project-url={item.projectUrl}
               techstack={item.techstack}
             />

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/Addons.js";
 import degreeToRadians from "@/utils/degreeToRadians";
@@ -6,7 +6,7 @@ import degreeToRadians from "@/utils/degreeToRadians";
 export default function CoffeeWithCat() {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!containerRef.current) return;
 
     let camera: THREE.PerspectiveCamera;
