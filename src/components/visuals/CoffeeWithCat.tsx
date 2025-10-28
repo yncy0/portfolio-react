@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/Addons.js";
 import degreeToRadians from "@/utils/degreeToRadians";
@@ -7,7 +7,7 @@ import model from "@/assets/models/coffee_with_cat.glb";
 export default function CoffeeWithCat() {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!containerRef.current) return;
 
     let camera: THREE.PerspectiveCamera;
@@ -93,7 +93,7 @@ export default function CoffeeWithCat() {
       window.removeEventListener("resize", onWindowResize);
       if (renderer) renderer.dispose();
     };
-  }, []);
+  }, [containerRef]);
 
   return (
     <div

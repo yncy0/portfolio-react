@@ -5,7 +5,7 @@ import type { Technologies } from "./types";
 /**
  * @type Technologies
  *
- *  Arrays of list for TechnologiesList.vue at SectionMain.vue component
+ *  Arrays of list for TechnologiesList.tsx at SectionMain.tsx component
  */
 export const technologiesList: Technologies[] = [
   {

@@ -1,6 +1,10 @@
-import AboutMe from "./AboutMeSection"
-import ExperienceList from "../experience/ExperienceList"
-import Projec
+import AboutMe from "./AboutMeSection";
+import ExperienceList from "../experience/ExperienceList";
+import ProjectsList from "../projects/ProjectsList";
+import TechnologyList from "../technologies/TechnologyList";
+import EducationSection from "./EducationSection";
+import HireMeButton from "../button/HireMeButton";
+import { technologiesList } from "@/utils/lists";
 
 export default function MainSection() {
   return (
@@ -14,13 +18,12 @@ export default function MainSection() {
         <ProjectsList />
 
         <h2 className="text-lg lg:text-xl">Technologies</h2>
-        <TechnologiesList:lists="technologiesList" />
+        <TechnologyList lists={technologiesList} />
 
         <EducationSection />
       </section>
 
-      <HireMe />
+      <HireMeButton />
     </section>
-
-  )
+  );
 }
