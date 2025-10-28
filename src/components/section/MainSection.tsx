@@ -4,6 +4,7 @@ import ProjectsList from "../projects/ProjectsList";
 import TechnologyList from "../technologies/TechnologyList";
 import EducationSection from "./EducationSection";
 import HireMeButton from "../button/HireMeButton";
+
 import { technologiesList } from "@/utils/lists";
 
 export default function MainSection() {
@@ -18,7 +19,7 @@ export default function MainSection() {
         <ProjectsList />
 
         <h2 className="text-lg lg:text-xl">Technologies</h2>
-        <TechnologyList lists={technologiesList} />
+        <TechnologyList list={technologiesList} />
 
         <EducationSection />
       </section>
