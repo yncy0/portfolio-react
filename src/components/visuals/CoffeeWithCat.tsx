@@ -2,6 +2,7 @@ import { useLayoutEffect, useRef } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/Addons.js";
 import degreeToRadians from "@/utils/degreeToRadians";
+import model from "@/assets/models/coffee_with_cat.glb";
 
 export default function CoffeeWithCat() {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -26,7 +27,7 @@ export default function CoffeeWithCat() {
         75,
         containerRef.current.clientWidth / containerRef.current.clientHeight,
         0.1,
-        100
+        100,
       );
       camera.position.set(0, 2, 13);
 
@@ -39,7 +40,7 @@ export default function CoffeeWithCat() {
       renderer = new THREE.WebGLRenderer({ alpha: true });
       renderer.setSize(
         containerRef.current.clientWidth,
-        containerRef.current.clientHeight
+        containerRef.current.clientHeight,
       );
       renderer.setPixelRatio(window.devicePixelRatio);
 
@@ -50,14 +51,14 @@ export default function CoffeeWithCat() {
 
     function loadGLTF() {
       const gltfLoader = new GLTFLoader();
-      const url: string = "/models/coffee_with_cat.glb";
+      const url: string = model;
 
       gltfLoader.load(url, (gltf) => {
         const mesh = gltf.scene;
         mesh.rotation.set(
           degreeToRadians(35),
           degreeToRadians(-10),
-          degreeToRadians(10)
+          degreeToRadians(10),
         );
         scene.add(mesh);
 
@@ -101,4 +102,3 @@ export default function CoffeeWithCat() {
     />
   );
 }
-

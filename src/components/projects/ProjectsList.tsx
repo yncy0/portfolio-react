@@ -1,6 +1,9 @@
 import ProjectsCard from "./ProjectsCard";
 import { portfolioTechStack, monthsaryTechStack } from "@/utils/lists";
 import type { Projects } from "@/utils/types";
+import portfolio from "@/assets/images/projects/portfolio/index.png"
+import monthsary from "@/assets/images/projects/monthsary/hero-section.png"
+
 
 export default function ProjectsList() {
   const projects: Projects[] = [
@@ -10,7 +13,7 @@ export default function ProjectsList() {
         "This project is to showcase my other projects and skills." +
         "It is made with Nuxt, Tailwind CSS, and Shadcn/Vue",
       githubUrl: "https://github.com/yncy0/portfolio",
-      imageUrl: "/images/projects/portfolio/dark.png",
+      imageUrl: portfolio,
       projectUrl: "https://yncy0.nuxt.dev/",
       techstack: portfolioTechStack,
     },
@@ -20,7 +23,7 @@ export default function ProjectsList() {
         "A fun project dedicated to my girlfriend❤️. " +
         "This Project compose of Nuxt + Nuxt plugins and ecosystem, Tailwdind CSS, and Supabase as back-end",
       githubUrl: "https://github.com/yncy0/monthsary",
-      imageUrl: "/images/projects/monthsary/hero-section.png",
+      imageUrl: monthsary,
       projectUrl: "https://monthsary-website.nuxt.dev/",
       techstack: monthsaryTechStack,
     },

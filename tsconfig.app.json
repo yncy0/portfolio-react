@@ -31,5 +31,5 @@
       ]
     }
   },
-  "include": ["src"]
+  "include": ["src", "public/images", "public/images", "public/models", "public/images"]
 }
