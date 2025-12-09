@@ -8,51 +8,263 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
+import { createFileRoute } from '@tanstack/react-router'
 
-const IndexRoute = IndexRouteImport.update({
+import { Route as rootRouteImport } from './routes/__root'
+import { Route as FrontRouteImport } from './routes/_front'
+import { Route as FrontIndexRouteImport } from './routes/_front.index'
+import { Route as AdminAdminRouteImport } from './routes/admin/_admin'
+import { Route as AdminAdminProjectsRouteImport } from './routes/admin/_admin.projects'
+import { Route as AdminAdminHeroRouteImport } from './routes/admin/_admin.hero'
+import { Route as AdminAdminExperiencesRouteImport } from './routes/admin/_admin.experiences'
+import { Route as AdminAdminEducationRouteImport } from './routes/admin/_admin.education'
+import { Route as AdminAdminDashboardRouteImport } from './routes/admin/_admin.dashboard'
+import { Route as AdminAdminAboutRouteImport } from './routes/admin/_admin.about'
+
+const AdminRouteImport = createFileRoute('/admin')()
+
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FrontRoute = FrontRouteImport.update({
+  id: '/_front',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FrontIndexRoute = FrontIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => FrontRoute,
+} as any)
+const AdminAdminRoute = AdminAdminRouteImport.update({
+  id: '/_admin',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminAdminProjectsRoute = AdminAdminProjectsRouteImport.update({
+  id: '/projects',
+  path: '/projects',
+  getParentRoute: () => AdminAdminRoute,
+} as any)
+const AdminAdminHeroRoute = AdminAdminHeroRouteImport.update({
+  id: '/hero',
+  path: '/hero',
+  getParentRoute: () => AdminAdminRoute,
+} as any)
+const AdminAdminExperiencesRoute = AdminAdminExperiencesRouteImport.update({
+  id: '/experiences',
+  path: '/experiences',
+  getParentRoute: () => AdminAdminRoute,
+} as any)
+const AdminAdminEducationRoute = AdminAdminEducationRouteImport.update({
+  id: '/education',
+  path: '/education',
+  getParentRoute: () => AdminAdminRoute,
+} as any)
+const AdminAdminDashboardRoute = AdminAdminDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AdminAdminRoute,
+} as any)
+const AdminAdminAboutRoute = AdminAdminAboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => AdminAdminRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
+  '/admin': typeof AdminAdminRouteWithChildren
+  '/': typeof FrontIndexRoute
+  '/admin/about': typeof AdminAdminAboutRoute
+  '/admin/dashboard': typeof AdminAdminDashboardRoute
+  '/admin/education': typeof AdminAdminEducationRoute
+  '/admin/experiences': typeof AdminAdminExperiencesRoute
+  '/admin/hero': typeof AdminAdminHeroRoute
+  '/admin/projects': typeof AdminAdminProjectsRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
+  '/admin': typeof AdminAdminRouteWithChildren
+  '/': typeof FrontIndexRoute
+  '/admin/about': typeof AdminAdminAboutRoute
+  '/admin/dashboard': typeof AdminAdminDashboardRoute
+  '/admin/education': typeof AdminAdminEducationRoute
+  '/admin/experiences': typeof AdminAdminExperiencesRoute
+  '/admin/hero': typeof AdminAdminHeroRoute
+  '/admin/projects': typeof AdminAdminProjectsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
+  '/_front': typeof FrontRouteWithChildren
+  '/admin': typeof AdminRouteWithChildren
+  '/admin/_admin': typeof AdminAdminRouteWithChildren
+  '/_front/': typeof FrontIndexRoute
+  '/admin/_admin/about': typeof AdminAdminAboutRoute
+  '/admin/_admin/dashboard': typeof AdminAdminDashboardRoute
+  '/admin/_admin/education': typeof AdminAdminEducationRoute
+  '/admin/_admin/experiences': typeof AdminAdminExperiencesRoute
+  '/admin/_admin/hero': typeof AdminAdminHeroRoute
+  '/admin/_admin/projects': typeof AdminAdminProjectsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/admin'
+    | '/'
+    | '/admin/about'
+    | '/admin/dashboard'
+    | '/admin/education'
+    | '/admin/experiences'
+    | '/admin/hero'
+    | '/admin/projects'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/admin'
+    | '/'
+    | '/admin/about'
+    | '/admin/dashboard'
+    | '/admin/education'
+    | '/admin/experiences'
+    | '/admin/hero'
+    | '/admin/projects'
+  id:
+    | '__root__'
+    | '/_front'
+    | '/admin'
+    | '/admin/_admin'
+    | '/_front/'
+    | '/admin/_admin/about'
+    | '/admin/_admin/dashboard'
+    | '/admin/_admin/education'
+    | '/admin/_admin/experiences'
+    | '/admin/_admin/hero'
+    | '/admin/_admin/projects'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
+  FrontRoute: typeof FrontRouteWithChildren
+  AdminRoute: typeof AdminRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_front': {
+      id: '/_front'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof FrontRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_front/': {
+      id: '/_front/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof FrontIndexRouteImport
+      parentRoute: typeof FrontRoute
+    }
+    '/admin/_admin': {
+      id: '/admin/_admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminAdminRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/_admin/projects': {
+      id: '/admin/_admin/projects'
+      path: '/projects'
+      fullPath: '/admin/projects'
+      preLoaderRoute: typeof AdminAdminProjectsRouteImport
+      parentRoute: typeof AdminAdminRoute
+    }
+    '/admin/_admin/hero': {
+      id: '/admin/_admin/hero'
+      path: '/hero'
+      fullPath: '/admin/hero'
+      preLoaderRoute: typeof AdminAdminHeroRouteImport
+      parentRoute: typeof AdminAdminRoute
+    }
+    '/admin/_admin/experiences': {
+      id: '/admin/_admin/experiences'
+      path: '/experiences'
+      fullPath: '/admin/experiences'
+      preLoaderRoute: typeof AdminAdminExperiencesRouteImport
+      parentRoute: typeof AdminAdminRoute
+    }
+    '/admin/_admin/education': {
+      id: '/admin/_admin/education'
+      path: '/education'
+      fullPath: '/admin/education'
+      preLoaderRoute: typeof AdminAdminEducationRouteImport
+      parentRoute: typeof AdminAdminRoute
+    }
+    '/admin/_admin/dashboard': {
+      id: '/admin/_admin/dashboard'
+      path: '/dashboard'
+      fullPath: '/admin/dashboard'
+      preLoaderRoute: typeof AdminAdminDashboardRouteImport
+      parentRoute: typeof AdminAdminRoute
+    }
+    '/admin/_admin/about': {
+      id: '/admin/_admin/about'
+      path: '/about'
+      fullPath: '/admin/about'
+      preLoaderRoute: typeof AdminAdminAboutRouteImport
+      parentRoute: typeof AdminAdminRoute
     }
   }
 }
 
+interface FrontRouteChildren {
+  FrontIndexRoute: typeof FrontIndexRoute
+}
+
+const FrontRouteChildren: FrontRouteChildren = {
+  FrontIndexRoute: FrontIndexRoute,
+}
+
+const FrontRouteWithChildren = FrontRoute._addFileChildren(FrontRouteChildren)
+
+interface AdminAdminRouteChildren {
+  AdminAdminAboutRoute: typeof AdminAdminAboutRoute
+  AdminAdminDashboardRoute: typeof AdminAdminDashboardRoute
+  AdminAdminEducationRoute: typeof AdminAdminEducationRoute
+  AdminAdminExperiencesRoute: typeof AdminAdminExperiencesRoute
+  AdminAdminHeroRoute: typeof AdminAdminHeroRoute
+  AdminAdminProjectsRoute: typeof AdminAdminProjectsRoute
+}
+
+const AdminAdminRouteChildren: AdminAdminRouteChildren = {
+  AdminAdminAboutRoute: AdminAdminAboutRoute,
+  AdminAdminDashboardRoute: AdminAdminDashboardRoute,
+  AdminAdminEducationRoute: AdminAdminEducationRoute,
+  AdminAdminExperiencesRoute: AdminAdminExperiencesRoute,
+  AdminAdminHeroRoute: AdminAdminHeroRoute,
+  AdminAdminProjectsRoute: AdminAdminProjectsRoute,
+}
+
+const AdminAdminRouteWithChildren = AdminAdminRoute._addFileChildren(
+  AdminAdminRouteChildren,
+)
+
+interface AdminRouteChildren {
+  AdminAdminRoute: typeof AdminAdminRouteWithChildren
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminAdminRoute: AdminAdminRouteWithChildren,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
+  FrontRoute: FrontRouteWithChildren,
+  AdminRoute: AdminRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
