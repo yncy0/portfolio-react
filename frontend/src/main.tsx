@@ -1,6 +1,7 @@
 import "./index.css";
-import ReactDOM from "react-dom/client"
+import ReactDOM from "react-dom/client";
 import { RouterProvider, createRouter } from "@tanstack/react-router";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { routeTree } from "./routeTree.gen";
 import { StrictMode } from "react";
 
@@ -8,23 +9,33 @@ const router = createRouter({
   routeTree,
   defaultStaleTime: 5000,
   scrollRestoration: true,
-  basepath: '/portfolio-react'
+  basepath: "/portfolio-react",
 });
 
-declare module '@tanstack/react-router' {
+const client = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5, // 5 minutes
+      refetchOnWindowFocus: false,
+    },
+  },
+});
+
+declare module "@tanstack/react-router" {
   interface Register {
-    router: typeof router
+    router: typeof router;
   }
 }
 
-const rootElement = document.getElementById('root')!
+const rootElement = document.getElementById("root")!;
 
 if (rootElement && !rootElement.innerHTML) {
-  const root = ReactDOM.createRoot(rootElement)
+  const root = ReactDOM.createRoot(rootElement);
   root.render(
     <StrictMode>
-      <RouterProvider router={router} />
+      <QueryClientProvider client={client}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
     </StrictMode>,
-  )
+  );
 }
-
