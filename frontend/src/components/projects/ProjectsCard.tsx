@@ -2,7 +2,6 @@ import { Icon } from "@iconify-icon/react"
 
 import { Button } from "../ui/button";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "../ui/card";
-import ProjectTechStack from "./ProjectTechStack";
 
 import type { Projects } from "@/utils/types";
 
@@ -18,7 +17,6 @@ export default function ProjectsCard(props: Projects) {
 
       <CardContent className="flex flex-col gap-5">
         <img src={props.imageUrl} alt="Image of Portfolio" className="w-full" />
-        <ProjectTechStack list={props.techstack} />
       </CardContent>
 
       <CardFooter className="flex flex-row gap-5">

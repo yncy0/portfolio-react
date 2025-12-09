@@ -1,6 +1,5 @@
 import BadgesList from "../badges/BadgesList";
 import CoffeeWithCat from "../visuals/CoffeeWithCat";
-import "./HeroSection.css";
 import { HeroTitle } from "./HeroTitle";
 
 export default function HeroSection() {

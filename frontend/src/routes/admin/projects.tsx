@@ -1,21 +1,26 @@
-import { AdminCard } from '@/components/card/AdminCard'
-import ProjectsList from '@/components/projects/ProjectsList'
-import { createFileRoute } from '@tanstack/react-router'
+import { AdminCard, AdminTitle } from "@/components/card/AdminCard";
+import DialogAddProjects from "@/components/dialog/add/DialogAddProjects";
+import ProjectsList from "@/components/projects/ProjectsList";
+import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute('/admin/projects')({
+export const Route = createFileRoute("/admin/projects")({
   component: RouteComponent,
   staticData: {
     title: "Projects",
   },
-
-})
+});
 
 function RouteComponent() {
   return (
     <>
-      <AdminCard title='Projects'>
-        <ProjectsList />
-      </AdminCard>
+      <div>
+        <AdminTitle title="Projects">
+          <DialogAddProjects />
+        </AdminTitle>
+        <AdminCard>
+          <ProjectsList />
+        </AdminCard>
+      </div>
     </>
-  )
+  );
 }

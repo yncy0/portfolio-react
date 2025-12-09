@@ -1,5 +1,6 @@
-import { AdminCard } from "@/components/card/AdminCard";
+import { AdminCard, AdminTitle } from "@/components/card/AdminCard";
 import PlaceholderCard from "@/components/card/PlaceholderCard";
+import DialogEditExperiences from "@/components/dialog/edit/DialogEditExperiences";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/admin/experiences")({
@@ -12,9 +13,14 @@ export const Route = createFileRoute("/admin/experiences")({
 function RouteComponent() {
   return (
     <>
-      <AdminCard title="Experiences">
-        <PlaceholderCard label="No experience yet!" />
-      </AdminCard>
+      <div>
+        <AdminTitle title="Experiences">
+          <DialogEditExperiences />
+        </AdminTitle>
+        <AdminCard>
+          <PlaceholderCard label="No experience yet!" />
+        </AdminCard>
+      </div>
     </>
   );
 }

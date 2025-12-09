@@ -1,4 +1,5 @@
-import { AdminCard } from "@/components/card/AdminCard";
+import { AdminCard, AdminTitle } from "@/components/card/AdminCard";
+import DialogEditEducation from "@/components/dialog/edit/DialogEditEducation";
 import EducationList from "@/components/education/EducationList";
 import { createFileRoute } from "@tanstack/react-router";
 
@@ -12,9 +13,14 @@ export const Route = createFileRoute("/admin/education")({
 function RouteComponent() {
   return (
     <>
-      <AdminCard title="Education">
-        <EducationList />
-      </AdminCard>
+      <div>
+        <AdminTitle title="Education">
+          <DialogEditEducation />
+        </AdminTitle>
+        <AdminCard>
+          <EducationList />
+        </AdminCard>
+      </div>
     </>
   );
 }
