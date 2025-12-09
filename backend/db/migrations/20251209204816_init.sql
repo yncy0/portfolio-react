@@ -9,7 +9,8 @@ CREATE TABLE IF NOT EXISTS experiences (
   id INTEGER PRIMARY KEY,
   title TEXT NOT NULL,
   description TEXT NOT NULL,
-  year TEXT NOT NULL
+  year_start TEXT NOT NULL,
+  year_end TEXT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS education (
