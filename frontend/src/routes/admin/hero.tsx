@@ -16,10 +16,10 @@ function RouteComponent() {
   return (
     <>
       <div>
-        <AdminTitle title="Badges">
+        <AdminTitle title="Hero Title">
           <DialogEditHeroTitle />
         </AdminTitle>
-        <AdminCard title="Hero Title">
+        <AdminCard>
           <HeroTitle
             name="Yancy"
             description="You Averagre Programming Enjoyer"

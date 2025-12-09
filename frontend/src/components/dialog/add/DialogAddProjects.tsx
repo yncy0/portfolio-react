@@ -16,7 +16,7 @@ export default function DialogAddProjects() {
   return (
     <Dialog>
       <DialogTrigger>
-        <Button>Edit</Button>
+        <Button>Add</Button>
       </DialogTrigger>
       <form>
         <DialogContent>
