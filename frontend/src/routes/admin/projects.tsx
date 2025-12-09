@@ -1,3 +1,5 @@
+import { AdminCard } from '@/components/card/AdminCard'
+import ProjectsList from '@/components/projects/ProjectsList'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/admin/projects')({
@@ -9,5 +11,11 @@ export const Route = createFileRoute('/admin/projects')({
 })
 
 function RouteComponent() {
-  return <div>Hello "/_admin/projects"!</div>
+  return (
+    <>
+      <AdminCard title='Projects'>
+        <ProjectsList />
+      </AdminCard>
+    </>
+  )
 }

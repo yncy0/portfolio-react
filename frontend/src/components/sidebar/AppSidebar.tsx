@@ -40,6 +40,11 @@ const data = {
       icon: "lucide:folder",
     },
     {
+      title: "Techstack",
+      url: "/admin/techstack",
+      icon: "lucide:bug",
+    },
+    {
       title: "Education",
       url: "/admin/education",
       icon: "lucide:graduation-cap",

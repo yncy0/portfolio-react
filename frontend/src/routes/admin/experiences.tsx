@@ -1,13 +1,20 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { AdminCard } from "@/components/card/AdminCard";
+import PlaceholderCard from "@/components/card/PlaceholderCard";
+import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute('/admin/experiences')({
+export const Route = createFileRoute("/admin/experiences")({
   component: RouteComponent,
   staticData: {
     title: "Experiences",
   },
-
-})
+});
 
 function RouteComponent() {
-  return <div>Hello "/_admin/experiences"!</div>
+  return (
+    <>
+      <AdminCard title="Experiences">
+        <PlaceholderCard label="No experience yet!" />
+      </AdminCard>
+    </>
+  );
 }

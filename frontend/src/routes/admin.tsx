@@ -20,7 +20,7 @@ function RouteComponent() {
       <AppSidebar />
       <SidebarInset>
         <AdminHeader />
-        <main className="p-6">
+        <main className="flex flex-col gap-10 p-6">
           <Outlet />
         </main>
       </SidebarInset>

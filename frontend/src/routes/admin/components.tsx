@@ -1,3 +1,6 @@
+import { AdminCard } from "@/components/card/AdminCard";
+import Footer from "@/components/footer/Footer";
+import Header from "@/components/header/Header";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/admin/components")({
@@ -8,5 +11,15 @@ export const Route = createFileRoute("/admin/components")({
 });
 
 function RouteComponent() {
-  return <div>Hello "/admin/"!</div>;
+  return (
+    <>
+      <AdminCard title="Header">
+        <Header />
+      </AdminCard>
+
+      <AdminCard title="Footer">
+        <Footer />
+      </AdminCard>
+    </>
+  )
 }
