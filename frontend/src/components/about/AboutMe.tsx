@@ -1,13 +1,13 @@
+import { useAbout } from "@/hooks/useAbout";
+
 export default function AboutMe() {
+  const { data: about, isLoading, error } = useAbout();
+
   return (
-    <p className="text-lg">
-      Hello there! My name is Yancy. A front-end developer that focuses on
-      building and collaboration among front-end projects specially Vue/Nuxt.
-      <br />
-      Driven by curiosity, I also venture into other technologies when I take a
-      break doing front-end stuff such as back-end development, game
-      development, and the Linux technology.
-      <br />
-    </p>
+    <>
+      {about?.map((item) => (
+        <p className="text-lg">{item.description}</p>
+      ))}
+    </>
   );
 }
