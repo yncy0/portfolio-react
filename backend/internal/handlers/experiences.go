@@ -20,30 +20,30 @@ func NewExperienceHandler(repo *repository.ExperienceRepository) *ExperienceHand
 func (h *ExperienceHandler) GetAll(c *gin.Context) {
 	experiences, err := h.repo.GetAll()
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		c.IndentedJSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
-	c.JSON(http.StatusOK, experiences)
+	c.IndentedJSON(http.StatusOK, experiences)
 }
 
 func (h *ExperienceHandler) Update(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid ID"})
+		c.IndentedJSON(http.StatusBadRequest, gin.H{"error": "Invalid ID"})
 		return
 	}
 
 	var exp models.Experience
 	if err := c.ShouldBindJSON(&exp); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		c.IndentedJSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
 	if err := h.repo.Update(id, &exp); err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		c.IndentedJSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"message": "Experience updated successfully"})
+	c.IndentedJSON(http.StatusOK, gin.H{"message": "Experience updated successfully"})
 }
 

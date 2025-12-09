@@ -20,30 +20,30 @@ func NewBadgeHandler(repo *repository.BadgeRepository) *BadgeHandler {
 func (h *BadgeHandler) GetAll(c *gin.Context) {
 	badges, err := h.repo.GetAll()
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		c.IndentedJSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
-	c.JSON(http.StatusOK, badges)
+	c.IndentedJSON(http.StatusOK, badges)
 }
 
 func (h *BadgeHandler) Update(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid ID"})
+		c.IndentedJSON(http.StatusBadRequest, gin.H{"error": "Invalid ID"})
 		return
 	}
 
 	var badge models.Badge
 	if err := c.ShouldBindJSON(&badge); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		c.IndentedJSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
 	if err := h.repo.Update(id, &badge); err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		c.IndentedJSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"message": "Badge updated successfully"})
+	c.IndentedJSON(http.StatusOK, gin.H{"message": "Badge updated successfully"})
 }
 

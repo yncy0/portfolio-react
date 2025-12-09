@@ -20,30 +20,30 @@ func NewEducationHandler(repo *repository.EducationRepository) *EducationHandler
 func (h *EducationHandler) GetAll(c *gin.Context) {
 	educations, err := h.repo.GetAll()
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		c.IndentedJSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
-	c.JSON(http.StatusOK, educations)
+	c.IndentedJSON(http.StatusOK, educations)
 }
 
 func (h *EducationHandler) Update(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid ID"})
+		c.IndentedJSON(http.StatusBadRequest, gin.H{"error": "Invalid ID"})
 		return
 	}
 
 	var edu models.Education
 	if err := c.ShouldBindJSON(&edu); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		c.IndentedJSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
 	if err := h.repo.Update(id, &edu); err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		c.IndentedJSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"message": "Education updated successfully"})
+	c.IndentedJSON(http.StatusOK, gin.H{"message": "Education updated successfully"})
 }
 

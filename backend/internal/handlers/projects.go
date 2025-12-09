@@ -20,26 +20,26 @@ func NewProjectHandler(repo *repository.ProjectRepository) *ProjectHandler {
 func (h *ProjectHandler) GetAll(c *gin.Context) {
 	projects, err := h.repo.GetAll()
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		c.IndentedJSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
-	c.JSON(http.StatusOK, projects)
+	c.IndentedJSON(http.StatusOK, projects)
 }
 
 func (h *ProjectHandler) Create(c *gin.Context) {
 	var project models.Project
 	if err := c.ShouldBindJSON(&project); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		c.IndentedJSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
 	id, err := h.repo.Create(&project)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		c.IndentedJSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
 
 	project.ID = int(id)
-	c.JSON(http.StatusCreated, project)
+	c.IndentedJSON(http.StatusCreated, project)
 }
 
