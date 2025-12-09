@@ -1,13 +1,13 @@
 import { createFileRoute } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/admin/_admin/projects')({
+export const Route = createFileRoute('/admin/experiences')({
   component: RouteComponent,
   staticData: {
-    title: "Projects",
+    title: "Experiences",
   },
 
 })
 
 function RouteComponent() {
-  return <div>Hello "/_admin/projects"!</div>
+  return <div>Hello "/_admin/experiences"!</div>
 }

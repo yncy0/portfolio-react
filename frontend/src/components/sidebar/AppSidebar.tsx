@@ -15,8 +15,8 @@ import {
 const data = {
   navMain: [
     {
-      title: "Dashboard",
-      url: "/admin/dashboard",
+      title: "Components",
+      url: "/admin/components",
       icon: "lucide:layout-dashboard",
     },
     {

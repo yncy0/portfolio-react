@@ -8,20 +8,17 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { createFileRoute } from '@tanstack/react-router'
-
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as FrontRouteImport } from './routes/_front'
+import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as FrontIndexRouteImport } from './routes/_front.index'
-import { Route as AdminAdminRouteImport } from './routes/admin/_admin'
-import { Route as AdminAdminProjectsRouteImport } from './routes/admin/_admin.projects'
-import { Route as AdminAdminHeroRouteImport } from './routes/admin/_admin.hero'
-import { Route as AdminAdminExperiencesRouteImport } from './routes/admin/_admin.experiences'
-import { Route as AdminAdminEducationRouteImport } from './routes/admin/_admin.education'
-import { Route as AdminAdminDashboardRouteImport } from './routes/admin/_admin.dashboard'
-import { Route as AdminAdminAboutRouteImport } from './routes/admin/_admin.about'
-
-const AdminRouteImport = createFileRoute('/admin')()
+import { Route as AdminProjectsRouteImport } from './routes/admin/projects'
+import { Route as AdminHeroRouteImport } from './routes/admin/hero'
+import { Route as AdminExperiencesRouteImport } from './routes/admin/experiences'
+import { Route as AdminEducationRouteImport } from './routes/admin/education'
+import { Route as AdminComponentsRouteImport } from './routes/admin/components'
+import { Route as AdminAboutRouteImport } from './routes/admin/about'
 
 const AdminRoute = AdminRouteImport.update({
   id: '/admin',
@@ -32,112 +29,115 @@ const FrontRoute = FrontRouteImport.update({
   id: '/_front',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
 const FrontIndexRoute = FrontIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => FrontRoute,
 } as any)
-const AdminAdminRoute = AdminAdminRouteImport.update({
-  id: '/_admin',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AdminAdminProjectsRoute = AdminAdminProjectsRouteImport.update({
+const AdminProjectsRoute = AdminProjectsRouteImport.update({
   id: '/projects',
   path: '/projects',
-  getParentRoute: () => AdminAdminRoute,
+  getParentRoute: () => AdminRoute,
 } as any)
-const AdminAdminHeroRoute = AdminAdminHeroRouteImport.update({
+const AdminHeroRoute = AdminHeroRouteImport.update({
   id: '/hero',
   path: '/hero',
-  getParentRoute: () => AdminAdminRoute,
+  getParentRoute: () => AdminRoute,
 } as any)
-const AdminAdminExperiencesRoute = AdminAdminExperiencesRouteImport.update({
+const AdminExperiencesRoute = AdminExperiencesRouteImport.update({
   id: '/experiences',
   path: '/experiences',
-  getParentRoute: () => AdminAdminRoute,
+  getParentRoute: () => AdminRoute,
 } as any)
-const AdminAdminEducationRoute = AdminAdminEducationRouteImport.update({
+const AdminEducationRoute = AdminEducationRouteImport.update({
   id: '/education',
   path: '/education',
-  getParentRoute: () => AdminAdminRoute,
+  getParentRoute: () => AdminRoute,
 } as any)
-const AdminAdminDashboardRoute = AdminAdminDashboardRouteImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
-  getParentRoute: () => AdminAdminRoute,
+const AdminComponentsRoute = AdminComponentsRouteImport.update({
+  id: '/components',
+  path: '/components',
+  getParentRoute: () => AdminRoute,
 } as any)
-const AdminAdminAboutRoute = AdminAdminAboutRouteImport.update({
+const AdminAboutRoute = AdminAboutRouteImport.update({
   id: '/about',
   path: '/about',
-  getParentRoute: () => AdminAdminRoute,
+  getParentRoute: () => AdminRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/admin': typeof AdminAdminRouteWithChildren
+  '/admin': typeof AdminRouteWithChildren
+  '/admin/about': typeof AdminAboutRoute
+  '/admin/components': typeof AdminComponentsRoute
+  '/admin/education': typeof AdminEducationRoute
+  '/admin/experiences': typeof AdminExperiencesRoute
+  '/admin/hero': typeof AdminHeroRoute
+  '/admin/projects': typeof AdminProjectsRoute
   '/': typeof FrontIndexRoute
-  '/admin/about': typeof AdminAdminAboutRoute
-  '/admin/dashboard': typeof AdminAdminDashboardRoute
-  '/admin/education': typeof AdminAdminEducationRoute
-  '/admin/experiences': typeof AdminAdminExperiencesRoute
-  '/admin/hero': typeof AdminAdminHeroRoute
-  '/admin/projects': typeof AdminAdminProjectsRoute
+  '/admin/': typeof AdminIndexRoute
 }
 export interface FileRoutesByTo {
-  '/admin': typeof AdminAdminRouteWithChildren
+  '/admin/about': typeof AdminAboutRoute
+  '/admin/components': typeof AdminComponentsRoute
+  '/admin/education': typeof AdminEducationRoute
+  '/admin/experiences': typeof AdminExperiencesRoute
+  '/admin/hero': typeof AdminHeroRoute
+  '/admin/projects': typeof AdminProjectsRoute
   '/': typeof FrontIndexRoute
-  '/admin/about': typeof AdminAdminAboutRoute
-  '/admin/dashboard': typeof AdminAdminDashboardRoute
-  '/admin/education': typeof AdminAdminEducationRoute
-  '/admin/experiences': typeof AdminAdminExperiencesRoute
-  '/admin/hero': typeof AdminAdminHeroRoute
-  '/admin/projects': typeof AdminAdminProjectsRoute
+  '/admin': typeof AdminIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_front': typeof FrontRouteWithChildren
   '/admin': typeof AdminRouteWithChildren
-  '/admin/_admin': typeof AdminAdminRouteWithChildren
+  '/admin/about': typeof AdminAboutRoute
+  '/admin/components': typeof AdminComponentsRoute
+  '/admin/education': typeof AdminEducationRoute
+  '/admin/experiences': typeof AdminExperiencesRoute
+  '/admin/hero': typeof AdminHeroRoute
+  '/admin/projects': typeof AdminProjectsRoute
   '/_front/': typeof FrontIndexRoute
-  '/admin/_admin/about': typeof AdminAdminAboutRoute
-  '/admin/_admin/dashboard': typeof AdminAdminDashboardRoute
-  '/admin/_admin/education': typeof AdminAdminEducationRoute
-  '/admin/_admin/experiences': typeof AdminAdminExperiencesRoute
-  '/admin/_admin/hero': typeof AdminAdminHeroRoute
-  '/admin/_admin/projects': typeof AdminAdminProjectsRoute
+  '/admin/': typeof AdminIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/admin'
-    | '/'
     | '/admin/about'
-    | '/admin/dashboard'
+    | '/admin/components'
     | '/admin/education'
     | '/admin/experiences'
     | '/admin/hero'
     | '/admin/projects'
+    | '/'
+    | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/admin'
-    | '/'
     | '/admin/about'
-    | '/admin/dashboard'
+    | '/admin/components'
     | '/admin/education'
     | '/admin/experiences'
     | '/admin/hero'
     | '/admin/projects'
+    | '/'
+    | '/admin'
   id:
     | '__root__'
     | '/_front'
     | '/admin'
-    | '/admin/_admin'
+    | '/admin/about'
+    | '/admin/components'
+    | '/admin/education'
+    | '/admin/experiences'
+    | '/admin/hero'
+    | '/admin/projects'
     | '/_front/'
-    | '/admin/_admin/about'
-    | '/admin/_admin/dashboard'
-    | '/admin/_admin/education'
-    | '/admin/_admin/experiences'
-    | '/admin/_admin/hero'
-    | '/admin/_admin/projects'
+    | '/admin/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -161,6 +161,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FrontRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/_front/': {
       id: '/_front/'
       path: '/'
@@ -168,54 +175,47 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FrontIndexRouteImport
       parentRoute: typeof FrontRoute
     }
-    '/admin/_admin': {
-      id: '/admin/_admin'
-      path: '/admin'
-      fullPath: '/admin'
-      preLoaderRoute: typeof AdminAdminRouteImport
-      parentRoute: typeof AdminRoute
-    }
-    '/admin/_admin/projects': {
-      id: '/admin/_admin/projects'
+    '/admin/projects': {
+      id: '/admin/projects'
       path: '/projects'
       fullPath: '/admin/projects'
-      preLoaderRoute: typeof AdminAdminProjectsRouteImport
-      parentRoute: typeof AdminAdminRoute
+      preLoaderRoute: typeof AdminProjectsRouteImport
+      parentRoute: typeof AdminRoute
     }
-    '/admin/_admin/hero': {
-      id: '/admin/_admin/hero'
+    '/admin/hero': {
+      id: '/admin/hero'
       path: '/hero'
       fullPath: '/admin/hero'
-      preLoaderRoute: typeof AdminAdminHeroRouteImport
-      parentRoute: typeof AdminAdminRoute
+      preLoaderRoute: typeof AdminHeroRouteImport
+      parentRoute: typeof AdminRoute
     }
-    '/admin/_admin/experiences': {
-      id: '/admin/_admin/experiences'
+    '/admin/experiences': {
+      id: '/admin/experiences'
       path: '/experiences'
       fullPath: '/admin/experiences'
-      preLoaderRoute: typeof AdminAdminExperiencesRouteImport
-      parentRoute: typeof AdminAdminRoute
+      preLoaderRoute: typeof AdminExperiencesRouteImport
+      parentRoute: typeof AdminRoute
     }
-    '/admin/_admin/education': {
-      id: '/admin/_admin/education'
+    '/admin/education': {
+      id: '/admin/education'
       path: '/education'
       fullPath: '/admin/education'
-      preLoaderRoute: typeof AdminAdminEducationRouteImport
-      parentRoute: typeof AdminAdminRoute
+      preLoaderRoute: typeof AdminEducationRouteImport
+      parentRoute: typeof AdminRoute
     }
-    '/admin/_admin/dashboard': {
-      id: '/admin/_admin/dashboard'
-      path: '/dashboard'
-      fullPath: '/admin/dashboard'
-      preLoaderRoute: typeof AdminAdminDashboardRouteImport
-      parentRoute: typeof AdminAdminRoute
+    '/admin/components': {
+      id: '/admin/components'
+      path: '/components'
+      fullPath: '/admin/components'
+      preLoaderRoute: typeof AdminComponentsRouteImport
+      parentRoute: typeof AdminRoute
     }
-    '/admin/_admin/about': {
-      id: '/admin/_admin/about'
+    '/admin/about': {
+      id: '/admin/about'
       path: '/about'
       fullPath: '/admin/about'
-      preLoaderRoute: typeof AdminAdminAboutRouteImport
-      parentRoute: typeof AdminAdminRoute
+      preLoaderRoute: typeof AdminAboutRouteImport
+      parentRoute: typeof AdminRoute
     }
   }
 }
@@ -230,34 +230,24 @@ const FrontRouteChildren: FrontRouteChildren = {
 
 const FrontRouteWithChildren = FrontRoute._addFileChildren(FrontRouteChildren)
 
-interface AdminAdminRouteChildren {
-  AdminAdminAboutRoute: typeof AdminAdminAboutRoute
-  AdminAdminDashboardRoute: typeof AdminAdminDashboardRoute
-  AdminAdminEducationRoute: typeof AdminAdminEducationRoute
-  AdminAdminExperiencesRoute: typeof AdminAdminExperiencesRoute
-  AdminAdminHeroRoute: typeof AdminAdminHeroRoute
-  AdminAdminProjectsRoute: typeof AdminAdminProjectsRoute
-}
-
-const AdminAdminRouteChildren: AdminAdminRouteChildren = {
-  AdminAdminAboutRoute: AdminAdminAboutRoute,
-  AdminAdminDashboardRoute: AdminAdminDashboardRoute,
-  AdminAdminEducationRoute: AdminAdminEducationRoute,
-  AdminAdminExperiencesRoute: AdminAdminExperiencesRoute,
-  AdminAdminHeroRoute: AdminAdminHeroRoute,
-  AdminAdminProjectsRoute: AdminAdminProjectsRoute,
-}
-
-const AdminAdminRouteWithChildren = AdminAdminRoute._addFileChildren(
-  AdminAdminRouteChildren,
-)
-
 interface AdminRouteChildren {
-  AdminAdminRoute: typeof AdminAdminRouteWithChildren
+  AdminAboutRoute: typeof AdminAboutRoute
+  AdminComponentsRoute: typeof AdminComponentsRoute
+  AdminEducationRoute: typeof AdminEducationRoute
+  AdminExperiencesRoute: typeof AdminExperiencesRoute
+  AdminHeroRoute: typeof AdminHeroRoute
+  AdminProjectsRoute: typeof AdminProjectsRoute
+  AdminIndexRoute: typeof AdminIndexRoute
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
-  AdminAdminRoute: AdminAdminRouteWithChildren,
+  AdminAboutRoute: AdminAboutRoute,
+  AdminComponentsRoute: AdminComponentsRoute,
+  AdminEducationRoute: AdminEducationRoute,
+  AdminExperiencesRoute: AdminExperiencesRoute,
+  AdminHeroRoute: AdminHeroRoute,
+  AdminProjectsRoute: AdminProjectsRoute,
+  AdminIndexRoute: AdminIndexRoute,
 }
 
 const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
